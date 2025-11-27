@@ -68,9 +68,7 @@ string decode(const string &bits, Node* root) {
     return res;
 }
 
-// ----------------------------------------------
-// Main Demo
-// ----------------------------------------------
+
 int main() {
     string text;
     cout << "Enter text to compress: ";
