@@ -68,7 +68,6 @@ string decode(const string &bits, Node* root) {
     return res;
 }
 
-
 int main() {
     string text;
     cout << "Enter text to compress: ";
@@ -92,8 +91,22 @@ int main() {
     string decoded = decode(encoded, root);
     cout << "Decoded Text: " << decoded << "\n";
 
-    double ratio = (double)encoded.size() / (text.size()*8) * 100;
-    cout << "Compression Ratio: " << ratio << "%\n";
+    // ----------------------------------------------
+    // BIT STATISTICS
+    // ----------------------------------------------
+    long long originalBits = text.size() * 8;     // 8 bits per character
+    long long compressedBits = encoded.size();    // actual encoded length
+
+    cout << "\n================ Compression Stats ================\n";
+    cout << "Original Bits      : " << originalBits << "\n";
+    cout << "Compressed Bits    : " << compressedBits << "\n";
+    cout << "Bits Saved         : " << (originalBits - compressedBits) << "\n";
+
+    double compressionPercent = 
+        (1.0 - (double)compressedBits / originalBits) * 100;
+
+    cout << "Compression Saved  : " << compressionPercent << "%\n";
+    cout << "===================================================\n";
 
     return 0;
 }
